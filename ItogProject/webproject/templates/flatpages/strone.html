@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+{{ flatpage.title }}
+{% endblock title %}
+
+{% block content %}
+    <h2>
+        <font size="20">
+            <font face="FRANKLIN GOTHIC MEDIUM">{{ flatpage.title }}</font>
+        </font>
+    </h2>
+    <hr>
+    <h3>
+        <font size="10">
+            <font face="CALIBRI">Новости:</font>
+        </font>
+    </h3>
+    <font size="30">
+        <font face="ARIAL BLACK">
+            <em>
+            => {{ flatpage.content }}
+            </em>
+        </font>
+    </font>
+{% endblock content %}
