@@ -1,0 +1,24 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+    {% if newsone %}
+        <table align="center" cellpadding="20" width="100%">
+            <tr>
+                <td><strong><font size="6">Заголовок</font></strong></td>
+                <td><strong><font size="6">Статья</font></strong></td>
+                <td><strong><font size="6">Дата публикации</font></strong></td>
+            </tr>
+            <tr>
+                <td><font size="5"><em>{{ newsone.heading|censor }}</em></font></td>
+                <td><font size="5"><em>{{ newsone.text|censor}}</em></font></td>
+                <td><font size="5"><em>{{ newsone.datetime|date:'d M Y' }}</em></font></td>
+            </tr>
+        </table>
+    {% endif %}
+{% endblock content %}
