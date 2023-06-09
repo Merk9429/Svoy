@@ -1,0 +1,54 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+<h1>Поиск</h1>
+<hr>
+<form action="" method="get">
+        {{ filterset.form.as_p }}
+        <input type="submit" value="Поиск" />
+    </form>
+
+    <hr>
+    {% if news %}
+        <table align="center" cellpadding="20" width="100%">
+            <tr>
+                <td><strong><font size="6">Заголовок</font></strong></td>
+                <td><strong><font size="6">Дата публикации</font></strong></td>
+                <td><strong><font size="6">Статья</font></strong></td>
+            </tr>
+            {% for post in news %}
+            <tr>
+                <td><font size="4"><em>{{ post.heading|censor }}</em></font></td>
+                <td><font size="4"><em>{{ post.datetime|date:'d M Y' }}</em></font></td>
+                <td><font size="4"><em>{{ post.text|truncatechars:20|censor }}</em></font></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2> Новых новостей нет. </h2>
+    {% endif %}
+    {% if page_obj.has_previous %}
+        <a href="?{% url_replace page=1 %}">1</a>
+        {% if page_obj.previous_page_number != 1 %}
+            ...
+            <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    {{ page_obj.number }}
+
+    {% if page_obj.has_next %}
+        <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            ...
+            <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}
