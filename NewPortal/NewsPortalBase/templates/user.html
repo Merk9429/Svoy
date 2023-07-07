@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h2>
+    <div style="text-align: center;">
+        <strong><font size="6">Личный кабинет {{request.user.username}}</font></strong>
+    </div>
+</h2>
+<div style="text-align: center;">
+    <font size="4"> Здесь может содержаться персональная информация для каждого пользователя </font>
+</div>
+<p>&nbsp;</p>
+<div style="text-align: center;">
+    <button>
+    <a href="/sign/logout/">Выйти</a>
+    </button>
+</div>
+<p>&nbsp;</p>
+{% if is_not_authors %}
+<div style="text-align: center;">
+    <button> <a href="/sign/upgrade/"> Стать автором!</a> </button>
+</div>
+{% endif %}
+{% endblock %}
